@@ -4,7 +4,7 @@
 
 
 import random
-from maze_newfiles.character import Character
+from character import Character
 
 class Goblin(Character):
     """define your monster class here"""

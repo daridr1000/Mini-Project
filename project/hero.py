@@ -2,8 +2,8 @@
 #  Date: 9 January 2020
 #  Version: 1.0
 
-from maze_newfiles.getch1 import *
-from maze_newfiles.character import Character
+from getch1 import *
+from character import Character
 import sys , random
 
 

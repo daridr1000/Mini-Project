@@ -1,8 +1,8 @@
-from maze_newfiles.hero import Hero
-from maze_newfiles.maze_gen_recursive import make_maze_recursion
+from hero import Hero
+from maze_gen_recursive import make_maze_recursion
 from copy import deepcopy
-from maze_newfiles.monster import Monster
-from maze_newfiles.goblin import Goblin
+from monster import Monster
+from goblin import Goblin
 WALL_CHAR = "#"
 SPACE_CHAR = "-"
 HERO_CHAR = "H"

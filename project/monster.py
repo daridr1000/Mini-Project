@@ -3,7 +3,7 @@
 #  Version: 1.0
 
 import random
-from maze_newfiles.character import Character
+from character import Character
 
 class Monster(Character):
     """define your monster class here"""
