@@ -1,7 +1,7 @@
 import random
 
 
-class Character():
+class Character:
     def __init__(self):
         self._coordX = random.randint(1, 16)
         self._coordY = random.randint(1, 16)

@@ -1,8 +1,8 @@
-from hero import Hero
+from character.hero import Hero
 from maze_gen_recursive import make_maze_recursion
 from copy import deepcopy
-from monster import Monster
-from goblin import Goblin
+from character.monster import Monster
+from character.goblin import Goblin
 WALL_CHAR = "#"
 SPACE_CHAR = "-"
 HERO_CHAR = "H"
@@ -45,7 +45,11 @@ class Game:
         self.MyEnvironment = _Environment(self.maze)  # initial environment is the maze itself
         self._count = 0
 
-
+    def _get_hero(self):
+        environment = self.MyEnvironment.get_environment()
+        while environment[self.myHero.getcoordX()][self.myHero.getcoordY()] != 0:
+            self.myHero = Hero()
+        return [self.myHero.getcoordX(), self.myHero.getcoordY()]
     def _get_monster(self):
         environment = self.MyEnvironment.get_environment()
         monster = Monster()
@@ -63,8 +67,8 @@ class Game:
 
     def play(self):
         environment=self.MyEnvironment.get_environment()
-        XH =self.myHero.getcoordX()
-        YH =self.myHero.getcoordY()
+        XH =self._get_hero()[0]
+        YH =self._get_hero()[1]
         environment[XH][YH]=2
         for i in range(0,5):
             monster=self._get_monster()

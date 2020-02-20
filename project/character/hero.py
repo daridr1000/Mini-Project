@@ -63,40 +63,83 @@ class Hero(Character):
         if ch2 == "w":
             # the up arrow key was pressed
             print("up key pressed")
-            self._health-=1
-            if  environment[self._coordX - 1][self._coordY] == 0:
-                environment[self._coordX][self._coordY] = 0
+            if environment[self._coordX - 1][self._coordY] == 0:
                 environment[self._coordX - 1][self._coordY] = 2
+                if environment[self._coordX][self._coordY] != 3:
+                    environment[self._coordX][self._coordY] = 0
+                self._health -= 1
                 self._coordX -= 1
+            elif environment[self._coordX - 1][self._coordY] == 3:
+                self.fight()
+                environment[self._coordX][self._coordY] = 0
+                self._coordX -= 1
+            elif environment[self._coordX - 1][self._coordY] == 4:
+                environment[self._coordX - 1][self._coordY] = 2
+                self._health -= 1
+                environment[self._coordX][self._coordY] = 0
+                self._coordX -= 1
+
             return True
 
         elif ch2 == "s":
             # the down arrow key was pressed
             print("down key pressed")
-            self._health -= 1
             if environment[self._coordX +1][self._coordY] == 0:
-                environment[self._coordX][self._coordY] = 0
                 environment[self._coordX + 1][self._coordY] = 2
+                if environment[self._coordX][self._coordY] != 3:
+                    environment[self._coordX][self._coordY] = 0
+                self._health -= 1
+                self._coordX += 1
+            elif environment[self._coordX + 1][self._coordY] == 3:
+                self.fight()
+                environment[self._coordX][self._coordY] = 0
+                self._coordX += 1
+            elif environment[self._coordX + 1][self._coordY] == 4:
+                environment[self._coordX + 1][self._coordY] = 2
+                self._health -= 1
+                environment[self._coordX][self._coordY] = 0
                 self._coordX += 1
             return True
 
         elif ch2 == "a":
             # the left arrow key was pressed
             print("left key pressed")
-            self._health -= 1
+
             if environment[self._coordX][self._coordY-1] == 0:
-                environment[self._coordX][self._coordY] = 0
                 environment[self._coordX][self._coordY-1] = 2
+                if environment[self._coordX][self._coordY] != 3:
+                    environment[self._coordX][self._coordY] = 0
+                self._health -= 1
+                self._coordY -= 1
+            elif environment[self._coordX][self._coordY-1] == 3:
+                self.fight()
+                environment[self._coordX][self._coordY] = 0
+                self._coordY -= 1
+            elif environment[self._coordX][self._coordY-1] == 4:
+                environment[self._coordX][self._coordY-1] = 2
+                self._health -= 1
+                environment[self._coordX][self._coordY] = 0
                 self._coordY -= 1
             return True
 
         elif ch2 == "d":
             # the right arrow key was pressed
             print("right key pressed")
-            self._health -= 1
+
             if environment[self._coordX][self._coordY + 1] == 0:
-                environment[self._coordX][self._coordY] = 0
                 environment[self._coordX][self._coordY + 1] = 2
+                if environment[self._coordX][self._coordY] != 3:
+                    environment[self._coordX][self._coordY] = 0
+                self._health -= 1
+                self._coordY += 1
+            elif environment[self._coordX][self._coordY + 1] == 3:
+                self.fight()
+                environment[self._coordX][self._coordY] = 0
+                self._coordY += 1
+            elif environment[self._coordX][self._coordY + 1] == 4:
+                environment[self._coordX][self._coordY + 1] = 2
+                self._health -= 1
+                environment[self._coordX][self._coordY] = 0
                 self._coordY += 1
             return True
 
@@ -106,8 +149,5 @@ class Hero(Character):
         """fight with monsters"""
         return
 
-    @property
-    def coordX(self):
-        return self._coordX
 
 
