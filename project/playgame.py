@@ -1,13 +1,15 @@
 from character.hero import Hero
 from maze_gen_recursive import make_maze_recursion
 from copy import deepcopy
-from character.monster import Monster
-from character.goblin import Goblin
+from character.creature.monster import Monster
+from character.creature.goblin import Goblin
+
 WALL_CHAR = "#"
 SPACE_CHAR = "-"
 HERO_CHAR = "H"
 MONSTER_CHAR = "M"
 GOBLIN_CHAR = "G"
+
 
 class _Environment:
     """Environment includes Maze+Monster+Goblin"""
@@ -50,25 +52,31 @@ class Game:
         while environment[self.myHero.getcoordX()][self.myHero.getcoordY()] != 0:
             self.myHero = Hero()
         return [self.myHero.getcoordX(), self.myHero.getcoordY()]
+
     def _get_monster(self):
         environment = self.MyEnvironment.get_environment()
         monster = Monster()
         while environment[monster.getcoordX()][monster.getcoordY()]!=0:
+            Monster.all_monsters.remove(monster)
+            Monster.all_coordinates.remove([monster.getcoordX(),monster.getcoordY()])
             monster = Monster()
+        monster.set_ability()
         return [monster.getcoordX(),monster.getcoordY()]
-
 
     def _get_goblin(self):
         environment = self.MyEnvironment.get_environment()
         goblin = Goblin()
         while environment[goblin.getcoordX()][goblin.getcoordY()] != 0:
+            Goblin.all_goblins.remove(goblin)
+            Goblin.all_coordinates.remove([goblin.getcoordX(),goblin.getcoordY()])
             goblin = Goblin()
+        goblin.set_ability()
         return [goblin.getcoordX(), goblin.getcoordY()]
 
     def play(self):
         environment=self.MyEnvironment.get_environment()
-        XH =self._get_hero()[0]
-        YH =self._get_hero()[1]
+        XH = self._get_hero()[0]
+        YH = self._get_hero()[1]
         environment[XH][YH]=2
         for i in range(0,5):
             monster=self._get_monster()
@@ -83,17 +91,43 @@ class Game:
         self.MyEnvironment.print_environment()
         print("Hero position: ",XH,YH)
         print("Health", self.myHero.gethealth())
+        print("Coins", self.myHero.getcoins())
+        print("MONSTERS:")
+        monsters = Monster.all_monsters
+        for i in range(0,5):
+            if monsters[i].get_ability() == 1:
+                type = "Thief Monster"
+            elif monsters[i].get_ability() == 2:
+                type = "Fighter Monster"
+            else:
+                type = "Gamer Monster"
+            print(type,monsters[i].getcoordX(),monsters[i].getcoordY())
+        print("GOBLINS:")
+        goblins = Goblin.all_goblins
+        for i in range(0, 5):
+            if goblins[i].get_ability() == 1:
+                type = "Wealth Goblin"
+            elif goblins[i].get_ability() == 2:
+                type = "Health Goblin"
+            else:
+                type = "Gamer Goblin"
+            print(type,goblins[i].getcoordX(), goblins[i].getcoordY())
         while True:
-            #if self.myHero.move(self.MyEnvironment):
-            if self.myHero.move_debug(environment):  #this works in debug mode
+            if self.myHero.move(self.MyEnvironment.get_environment()):
+            #if self.myHero.move_debug(environment):  #this works in debug mode
                 self.MyEnvironment.print_environment()
                 self._count += 1
                 print("============================", self._count)
                 XH = self.myHero.getcoordX()
                 YH = self.myHero.getcoordY()
                 print("Hero new position: ",XH,YH)
-                print("Health",self.myHero.gethealth())
-                if self.myHero.gethealth()==0:
+                if self.myHero.gethealth() >0:
+                    print("Health",self.myHero.gethealth())
+                else:
+                    print("Health 0")
+                print("Coins", self.myHero.getcoins())
+                if self.myHero.gethealth() <=0:
+                    print("Hero lost!")
                     break
 
 
