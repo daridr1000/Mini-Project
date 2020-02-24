@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a21582ad-eb8f-4566-ab4e-cd2922c4b791" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project/character/creature/goblin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/character/creature/monster.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/goblin/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/goblin/gamer_goblin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/goblin/health_goblin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/goblin/wealth_goblin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/character/creature/monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/monster.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/hero.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/hero.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/monster/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/monster/fighter_monster.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/monster/gamer_monster.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/monster/thief_monster.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/playgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/playgame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -210,40 +201,48 @@
       <option name="project" value="LOCAL" />
       <updated>1582217481796</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="monsters and goblins IMPROVED!">
+      <created>1582400439071</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582400439071</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new" />
     <MESSAGE value="new packages" />
     <MESSAGE value="monsters and goblins" />
-    <option name="LAST_COMMIT_MESSAGE" value="monsters and goblins" />
+    <MESSAGE value="monsters and goblins IMPROVED!" />
+    <option name="LAST_COMMIT_MESSAGE" value="monsters and goblins IMPROVED!" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1582217480876">
+    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1582400438060">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582217480876" />
+    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582400438060" />
     <state x="421" y="97" key="FileChooserDialogImpl" timestamp="1582209938523">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="97" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582209938523" />
-    <state width="1259" height="221" key="GridCell.Tab.0.bottom" timestamp="1582399940367">
+    <state width="1259" height="221" key="GridCell.Tab.0.bottom" timestamp="1582556212218">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="221" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582399940367" />
-    <state width="1259" height="221" key="GridCell.Tab.0.center" timestamp="1582399940367">
+    <state width="1259" height="221" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1582556212218" />
+    <state width="1259" height="221" key="GridCell.Tab.0.center" timestamp="1582556212218">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="221" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582399940367" />
-    <state width="1259" height="221" key="GridCell.Tab.0.left" timestamp="1582399940367">
+    <state width="1259" height="221" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1582556212218" />
+    <state width="1259" height="221" key="GridCell.Tab.0.left" timestamp="1582556212218">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="221" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582399940367" />
-    <state width="1259" height="221" key="GridCell.Tab.0.right" timestamp="1582399940367">
+    <state width="1259" height="221" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1582556212218" />
+    <state width="1259" height="221" key="GridCell.Tab.0.right" timestamp="1582556212218">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="221" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582399940367" />
+    <state width="1259" height="221" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1582556212218" />
     <state width="1259" height="498" key="GridCell.Tab.1.bottom" timestamp="1582233547179">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

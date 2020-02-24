@@ -10,6 +10,7 @@ class Monster(Creature):
     """define your monster class here"""
     all_monsters = []
     all_coordinates = []
+    hero_fight = []
     abilities = [1,2,3,random.randrange(1,4),random.randrange(1,4)]
     random.shuffle(abilities)
 
@@ -17,6 +18,7 @@ class Monster(Creature):
         super().__init__()
         Monster.all_monsters.append(self)
         Monster.all_coordinates.append([self.getcoordX() , self.getcoordY()])
+        Monster.hero_fight.append(0)
         self._ability = None
 
     def set_ability(self):

@@ -3,6 +3,8 @@ from maze_gen_recursive import make_maze_recursion
 from copy import deepcopy
 from character.creature.monster import Monster
 from character.creature.goblin import Goblin
+import sys
+
 
 WALL_CHAR = "#"
 SPACE_CHAR = "-"
@@ -40,6 +42,7 @@ class _Environment:
 class Game:
 
     _count = 0
+    _users = []
 
     def __init__(self):
         self.myHero = Hero()
@@ -57,6 +60,7 @@ class Game:
         environment = self.MyEnvironment.get_environment()
         monster = Monster()
         while environment[monster.getcoordX()][monster.getcoordY()]!=0:
+            Monster.hero_fight.remove(Monster.hero_fight[Monster.all_monsters.index(monster)])
             Monster.all_monsters.remove(monster)
             Monster.all_coordinates.remove([monster.getcoordX(),monster.getcoordY()])
             monster = Monster()
@@ -73,11 +77,29 @@ class Game:
         goblin.set_ability()
         return [goblin.getcoordX(), goblin.getcoordY()]
 
-    def play(self):
-        environment=self.MyEnvironment.get_environment()
+    @staticmethod
+    def menu():
+        print("MENU: START GAME (press ENTER ) | LOAD GAME (press L) | HELP (press H)  | LEAGUE TABLE (press T)| "
+              "EXIT (press E)")
+
+    @staticmethod
+    def save():
+        pass
+
+    @staticmethod
+    def instructions():
+        pass
+
+    @staticmethod
+    def league_table():
+        pass
+
+    def _set_hero(self,environment):
         XH = self._get_hero()[0]
         YH = self._get_hero()[1]
-        environment[XH][YH]=2
+        environment[XH][YH] = 2
+
+    def _set_creatures(self,environment):
         for i in range(0,5):
             monster=self._get_monster()
             XM = monster[0]
@@ -88,20 +110,26 @@ class Game:
             YG = goblin[1]
             environment[XG][YG] = 4
 
-        self.MyEnvironment.print_environment()
-        print("Hero position: ",XH,YH)
+    def _hero_details(self):
+        print("Hero position: ", self.myHero.getcoordX(), self.myHero.getcoordY())
         print("Health", self.myHero.gethealth())
         print("Coins", self.myHero.getcoins())
+
+    @staticmethod
+    def _monsters_details():
         print("MONSTERS:")
         monsters = Monster.all_monsters
-        for i in range(0,5):
+        for i in range(0, 5):
             if monsters[i].get_ability() == 1:
                 type = "Thief Monster"
             elif monsters[i].get_ability() == 2:
                 type = "Fighter Monster"
             else:
                 type = "Gamer Monster"
-            print(type,monsters[i].getcoordX(),monsters[i].getcoordY())
+            print(type, monsters[i].getcoordX(), monsters[i].getcoordY())
+
+    @staticmethod
+    def _goblins_details():
         print("GOBLINS:")
         goblins = Goblin.all_goblins
         for i in range(0, 5):
@@ -111,7 +139,44 @@ class Game:
                 type = "Health Goblin"
             else:
                 type = "Gamer Goblin"
-            print(type,goblins[i].getcoordX(), goblins[i].getcoordY())
+            print(type, goblins[i].getcoordX(), goblins[i].getcoordY())
+
+    @staticmethod
+    def choose_option():
+        ch = sys.stdin.read(1)
+        if ch == 'L':
+            Game.save()
+            return False
+        elif ch == 'H':
+            Game.instructions()
+            return False
+        elif ch == 'T':
+            Game.league_table()
+            return False
+        elif ch == 'E':
+            sys.exit()
+        elif ch == '\n':
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def type_user():
+        user = input("Type a user name: ")
+        Game._users.append(user)
+
+    def play(self):
+        Game.menu()
+        while not Game.choose_option():
+            Game.choose_option()
+            Game.menu()
+        environment=self.MyEnvironment.get_environment()
+        self._set_hero(environment)
+        self._set_creatures(environment)
+        self.MyEnvironment.print_environment()
+        self._hero_details()
+        Game._monsters_details()
+        Game._goblins_details()
         while True:
             if self.myHero.move(self.MyEnvironment.get_environment()):
             #if self.myHero.move_debug(environment):  #this works in debug mode
@@ -126,9 +191,17 @@ class Game:
                 else:
                     print("Health 0")
                 print("Coins", self.myHero.getcoins())
-                if self.myHero.gethealth() <=0:
+                print("Monsters visited:",Monster.hero_fight)
+                if self.myHero.lose_game():
                     print("Hero lost!")
+
                     break
+                else:
+                    if self.myHero.win_game():
+                        print("Hero wins!")
+                        Game.type_user()
+                        break
+        self.play()
 
 
 if __name__ == "__main__":

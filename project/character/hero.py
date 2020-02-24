@@ -19,6 +19,7 @@ class Hero(Character):
         self._health = 100
         self._coins = 1000  # gold coins the hero have.
         self._gem = 3
+        self._visited_monsters = 0
 
     def gethealth(self):
         return self._health
@@ -26,14 +27,18 @@ class Hero(Character):
     def getcoins(self):
         return self._coins
 
+    def win_game(self):
+        if self._visited_monsters == 5:
+            return True
+        return False
+
+    def lose_game(self):
+        if self.gethealth() <= 0:
+            return True
+        return False
+
     def move(self, environment):
         """move in the maze, it is noted this function may not work in the debug mode"""
-
-
-
-        """ADD WINNING CASE!!!!!!!!!!!!!!!!!"""
-
-
 
         ch2 = getch()
 
@@ -139,7 +144,9 @@ class Hero(Character):
                     environment[self._coordX][self._coordY] = 0
                 self._coordY += 1
             return True
-        elif ch2=="E":
+        elif ord(ch2) == 77:
+            print(environment)
+        elif ord(ch2) == 69:
             sys.exit()
         return False
 
@@ -260,6 +267,9 @@ class Hero(Character):
 
     def fight(self,monster):
         """fight with monsters"""
+        if Monster.hero_fight[Monster.all_monsters.index(monster)] == 0:
+            self._visited_monsters += 1
+            Monster.hero_fight[Monster.all_monsters.index(monster)] = 1
         if monster.get_ability() == 1:
             coins_stolen = Monster.thief_monster()
             self._coins -= coins_stolen
@@ -286,8 +296,9 @@ class Hero(Character):
         else:
             game = Hero.rock_paper_scissors()
             if game:
-                print("Hero wins!")
+
                 self._coins += 100
                 self._health += 50
+                print("Hero wins!")
             else:
                 print("Goblin wins!")
