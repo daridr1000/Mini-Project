@@ -27,6 +27,11 @@ class Hero(Character):
     def getcoins(self):
         return self._coins
 
+    def reset_hero_abilities(self):
+        self._health = 100
+        self._coins = 1000
+        self._visited_monsters = 0
+
     def win_game(self):
         if self._visited_monsters == 5:
             return True
@@ -260,6 +265,8 @@ class Hero(Character):
         while choices.index(ch) == creature_choice:
             ch = input("Draw! Choose again! ")
             creature_choice = Creature.gamer()
+            print("Creature picked : ", creature_choice)
+            """ADD MESSAGES AND DIFFICULTIES"""
         if choices.index(ch) - creature_choice == -1 or choices.index(ch) - creature_choice == 2:
             return True
         elif choices.index(ch) - creature_choice == 1 or choices.index(ch) - creature_choice == -2:
@@ -296,7 +303,6 @@ class Hero(Character):
         else:
             game = Hero.rock_paper_scissors()
             if game:
-
                 self._coins += 100
                 self._health += 50
                 print("Hero wins!")

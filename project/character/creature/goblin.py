@@ -27,6 +27,11 @@ class Goblin(Creature):
         return self._ability
 
     @staticmethod
+    def reset_goblins():
+        Goblin.all_goblins = []
+        Goblin.all_coordinates = []
+
+    @staticmethod
     def wealth_goblin():
         coins = 0
         r = random.random()

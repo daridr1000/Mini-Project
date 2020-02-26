@@ -5,7 +5,6 @@ from character.creature.monster import Monster
 from character.creature.goblin import Goblin
 import sys
 
-
 WALL_CHAR = "#"
 SPACE_CHAR = "-"
 HERO_CHAR = "H"
@@ -15,6 +14,7 @@ GOBLIN_CHAR = "G"
 
 class _Environment:
     """Environment includes Maze+Monster+Goblin"""
+
     def __init__(self, maze):
         self._environment = deepcopy(maze)
 
@@ -34,15 +34,15 @@ class _Environment:
             row_str = row_str.replace("1", WALL_CHAR)  # replace the wall character
             row_str = row_str.replace("0", SPACE_CHAR)  # replace the space character
             row_str = row_str.replace("2", HERO_CHAR)  # replace the hero character
-            row_str = row_str.replace("3", MONSTER_CHAR) # replace the monster character
-            row_str = row_str.replace("4", GOBLIN_CHAR) # replace the hero character
+            row_str = row_str.replace("3", MONSTER_CHAR)  # replace the monster character
+            row_str = row_str.replace("4", GOBLIN_CHAR)  # replace the hero character
             print("".join(row_str))
 
 
 class Game:
-
     _count = 0
     _users = []
+    _coins = []
 
     def __init__(self):
         self.myHero = Hero()
@@ -59,20 +59,20 @@ class Game:
     def _get_monster(self):
         environment = self.MyEnvironment.get_environment()
         monster = Monster()
-        while environment[monster.getcoordX()][monster.getcoordY()]!=0:
+        while environment[monster.getcoordX()][monster.getcoordY()] != 0:
             Monster.hero_fight.remove(Monster.hero_fight[Monster.all_monsters.index(monster)])
             Monster.all_monsters.remove(monster)
-            Monster.all_coordinates.remove([monster.getcoordX(),monster.getcoordY()])
+            Monster.all_coordinates.remove([monster.getcoordX(), monster.getcoordY()])
             monster = Monster()
         monster.set_ability()
-        return [monster.getcoordX(),monster.getcoordY()]
+        return [monster.getcoordX(), monster.getcoordY()]
 
     def _get_goblin(self):
         environment = self.MyEnvironment.get_environment()
         goblin = Goblin()
         while environment[goblin.getcoordX()][goblin.getcoordY()] != 0:
             Goblin.all_goblins.remove(goblin)
-            Goblin.all_coordinates.remove([goblin.getcoordX(),goblin.getcoordY()])
+            Goblin.all_coordinates.remove([goblin.getcoordX(), goblin.getcoordY()])
             goblin = Goblin()
         goblin.set_ability()
         return [goblin.getcoordX(), goblin.getcoordY()]
@@ -92,20 +92,57 @@ class Game:
 
     @staticmethod
     def league_table():
-        pass
+        f = open("leaguetable.txt", "r")
+        fl = f.readlines()
+        if fl != " ":
+            line = 1
+            for i in range(0, len(fl) - 1, 2):
+                print(line, str(fl[i].rstrip('\n')) + " " + str(fl[i + 1].rstrip('\n')))
+                line += 1
+        f.close()
 
-    def _set_hero(self,environment):
+    @classmethod
+    def update_league_table(cls):
+        league_table = []
+        f = open("leaguetable.txt", "r")
+        fl = f.readlines()
+        for i in range(0, len(fl) - 1, 2):
+            league_table.append([fl[i].rstrip('\n'), int(fl[i + 1])])
+        f.close()
+        league_table.sort(key=lambda x: x[1], reverse=True)
+        cls._users = []
+        cls._coins = []
+        for i in range(0, len(league_table)):
+            cls._users.append(league_table[i][0])
+            cls._coins.append(league_table[i][1])
+        f = open("leaguetable.txt", "w")
+        for i in range(0, len(cls._users)):
+            f.write(cls._users[i] + '\n' + str(cls._coins[i]) + '\n')
+        f.close()
+
+    def type_user(self):
+        user = input("Type a user name: ")
+        Game._users.append(user)
+        Game._coins.append(self.myHero.getcoins())
+
+    @classmethod
+    def save_user(cls):
+        f = open("leaguetable.txt", "a+")
+        f.write(cls._users[-1] + '\n' + str(cls._coins[-1]) + '\n')
+        f.close()
+
+    def _set_hero(self, environment):
         XH = self._get_hero()[0]
         YH = self._get_hero()[1]
         environment[XH][YH] = 2
 
-    def _set_creatures(self,environment):
-        for i in range(0,5):
-            monster=self._get_monster()
+    def _set_creatures(self, environment):
+        for i in range(0, 5):
+            monster = self._get_monster()
             XM = monster[0]
             YM = monster[1]
             environment[XM][YM] = 3
-            goblin=self._get_goblin()
+            goblin = self._get_goblin()
             XG = goblin[0]
             YG = goblin[1]
             environment[XG][YG] = 4
@@ -160,17 +197,19 @@ class Game:
         else:
             return False
 
-    @staticmethod
-    def type_user():
-        user = input("Type a user name: ")
-        Game._users.append(user)
+    def reset(self):
+        self._count = 0
+        self.myHero.reset_hero_abilities()
+        Monster.reset_monsters()
+        Goblin.reset_goblins()
+        self.MyEnvironment = _Environment(self.maze)
 
     def play(self):
         Game.menu()
         while not Game.choose_option():
             Game.choose_option()
             Game.menu()
-        environment=self.MyEnvironment.get_environment()
+        environment = self.MyEnvironment.get_environment()
         self._set_hero(environment)
         self._set_creatures(environment)
         self.MyEnvironment.print_environment()
@@ -179,19 +218,19 @@ class Game:
         Game._goblins_details()
         while True:
             if self.myHero.move(self.MyEnvironment.get_environment()):
-            #if self.myHero.move_debug(environment):  #this works in debug mode
+                # if self.myHero.move_debug(environment):  #this works in debug mode
                 self.MyEnvironment.print_environment()
                 self._count += 1
                 print("============================", self._count)
                 XH = self.myHero.getcoordX()
                 YH = self.myHero.getcoordY()
-                print("Hero new position: ",XH,YH)
-                if self.myHero.gethealth() >0:
-                    print("Health",self.myHero.gethealth())
+                print("Hero new position: ", XH, YH)
+                if self.myHero.gethealth() > 0:
+                    print("Health", self.myHero.gethealth())
                 else:
                     print("Health 0")
                 print("Coins", self.myHero.getcoins())
-                print("Monsters visited:",Monster.hero_fight)
+                print("Monsters visited:", Monster.hero_fight)
                 if self.myHero.lose_game():
                     print("Hero lost!")
 
@@ -199,13 +238,16 @@ class Game:
                 else:
                     if self.myHero.win_game():
                         print("Hero wins!")
-                        Game.type_user()
+                        self.type_user()
+                        Game.save_user()
+                        Game.update_league_table()
+                        """ADD LEAGUE TABLE , INSTRUCTIONS AND DIFFICULTIES! """
                         break
-        self.play()
 
 
 if __name__ == "__main__":
 
     myGame = Game()
-    myGame.play()
-    
+    while True:
+        myGame.play()
+        myGame.reset()

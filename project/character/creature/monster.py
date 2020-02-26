@@ -11,7 +11,7 @@ class Monster(Creature):
     all_monsters = []
     all_coordinates = []
     hero_fight = []
-    abilities = [1,2,3,random.randrange(1,4),random.randrange(1,4)]
+    abilities = [1, 2, 3, random.randrange(1,4),random.randrange(1,4)]
     random.shuffle(abilities)
 
     def __init__(self):
@@ -28,10 +28,16 @@ class Monster(Creature):
         return self._ability
 
     @staticmethod
+    def reset_monsters():
+        Monster.all_monsters = []
+        Monster.all_coordinates = []
+        Monster.hero_fight = []
+
+    @staticmethod
     def thief_monster():
         coins = 0
         r = random.random()
-        if r<=0.9:
+        if r <= 0.9:
             coins = 10
         return coins
 
@@ -39,7 +45,7 @@ class Monster(Creature):
     def fighter_monster():
         health = 0
         r = random.random()
-        if r<=0.4:
+        if r <= 0.4:
             health = 30
         return health
 
