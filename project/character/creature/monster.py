@@ -11,13 +11,13 @@ class Monster(Creature):
     all_monsters = []
     all_coordinates = []
     hero_fight = []
-    abilities = [1, 2, 3, random.randrange(1,4),random.randrange(1,4)]
+    abilities = [1, 2, 3, random.randrange(1, 4), random.randrange(1, 4)]
     random.shuffle(abilities)
 
     def __init__(self):
         super().__init__()
         Monster.all_monsters.append(self)
-        Monster.all_coordinates.append([self.getcoordX() , self.getcoordY()])
+        Monster.all_coordinates.append([self.getcoordX(), self.getcoordY()])
         Monster.hero_fight.append(0)
         self._ability = None
 
@@ -27,26 +27,48 @@ class Monster(Creature):
     def get_ability(self):
         return self._ability
 
-    @staticmethod
-    def reset_monsters():
-        Monster.all_monsters = []
-        Monster.all_coordinates = []
-        Monster.hero_fight = []
+    @classmethod
+    def reset_monsters(cls):
+        cls.all_monsters = []
+        cls.all_coordinates = []
+        cls.hero_fight = []
 
-    @staticmethod
-    def thief_monster():
+    @classmethod
+    def load_monsters(cls, coordinates, hero_fight, abilities):
+        for i in range(0, 5):
+            monster =  Monster()
+        cls.all_coordinates = coordinates
+        cls.hero_fight = hero_fight
+        for i in range(0,5):
+            for j in range(0,5):
+                cls.all_monsters[i].set_coords(coordinates[i][0],coordinates[i][1])
+        cls.abilities = abilities
+        for i in range(0,5):
+            cls.all_monsters[i].set_ability()
+
+    def thief_monster(self):
         coins = 0
         r = random.random()
-        if r <= 0.9:
-            coins = 10
+        if r <= 0.3 + self.get_difficulty() / 10:
+            coins = 50 + 50 * self.get_difficulty()
         return coins
 
-    @staticmethod
-    def fighter_monster():
+    def fighter_monster(self):
         health = 0
         r = random.random()
-        if r <= 0.4:
-            health = 30
+        if r <= 0.3 + self.get_difficulty() / 10:
+            health = 10 + 10 * self.get_difficulty()
         return health
 
-
+    @staticmethod
+    def monsters_details():
+        print("MONSTERS:")
+        monsters = Monster.all_monsters
+        for i in range(0, 5):
+            if monsters[i].get_ability() == 1:
+                type = "Thief Monster"
+            elif monsters[i].get_ability() == 2:
+                type = "Fighter Monster"
+            else:
+                type = "Gamer Monster"
+            print(type, monsters[i].getcoordX(), monsters[i].getcoordY())
