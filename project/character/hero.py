@@ -8,6 +8,7 @@ from character.creature.monster import Monster
 from character.creature.goblin import Goblin
 from character.creature import Creature
 import sys
+import pickle
 
 
 class Hero(Character):
@@ -18,11 +19,14 @@ class Hero(Character):
         super().__init__()
         self._health = 100
         self._coins = 1000  # gold coins the hero have.
-        self._gem = 0
+        self._moves = 0
         self._visited_monsters = 0
 
-    def increase_gem(self):
-        self._gem += 1
+    def increase_moves(self):
+        self._moves += 1
+
+    def get_moves(self):
+        return self._moves
 
     def gethealth(self):
         return self._health
@@ -36,7 +40,7 @@ class Hero(Character):
         print("Coins", self.getcoins())
 
     def reset_hero_abilities(self):
-        self._gem = 0
+        self._moves = 0
         self._health = 100
         self._coins = 1000
         self._visited_monsters = 0
@@ -57,18 +61,34 @@ class Hero(Character):
             return True
         return False
 
-    def load_game(self, environment):
-        f = open("load_game.txt", "w")
-        load = str(self._gem) + '\n' + str(self.gethealth()) + '\n' + str(self.getcoins()) + \
+    def save_game(self, environment):
+        f = open("backup", "wb")
+        pickle.dump(self._moves,f)
+        pickle.dump(self.gethealth(),f)
+        pickle.dump(self.getcoins(),f)
+        pickle.dump(self._visited_monsters,f)
+        pickle.dump(self.getcoordX(), f)
+        pickle.dump(self.getcoordY(), f)
+        pickle.dump(Monster.all_monsters,f)
+        pickle.dump(Monster.all_coordinates,f)
+        pickle.dump(Monster.hero_fight,f)
+        pickle.dump(Goblin.all_goblins,f)
+        pickle.dump(Goblin.all_coordinates,f)
+        pickle.dump(environment,f)
+        pickle.dump(Creature.get_difficulty(),f)
+        pickle.dump(Monster.abilities,f)
+        pickle.dump(Goblin.abilities,f)
+        f.close()
+
+        """save = str(self._gem) + '\n' + str(self.gethealth()) + '\n' + str(self.getcoins()) + \
                '\n'+ str(self._visited_monsters) +  \
                '\n' + str(Monster.all_coordinates) + '\n' + str(Monster.hero_fight) + \
                '\n' + str(Goblin.all_coordinates) + '\n' + str(environment) + \
                '\n' + str(Creature.get_difficulty()) + \
                 '\n' + str(self.getcoordX()) + '\n' + str(self.getcoordY()) + \
                 '\n' +str(Monster.abilities) + '\n' + str(Goblin.abilities)
-
-        f.write(load)
-        f.close()
+        f.write(save)
+        f.close()"""
 
     def move(self, environment):
         """move in the maze, it is noted this function may not work in the debug mode"""
@@ -176,7 +196,7 @@ class Hero(Character):
                 self._coordY += 1
             return True
         elif ch2 == b'S':
-            self.load_game(environment)
+            self.save_game(environment)
         elif ch2 == b'E':
             sys.exit()
         return False

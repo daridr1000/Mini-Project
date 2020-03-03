@@ -17,7 +17,7 @@ class Goblin(Creature):
     def __init__(self):
         super().__init__()
         Goblin.all_goblins.append(self)
-        Goblin.all_coordinates.append([self.getcoordX() , self.getcoordY()])
+        Goblin.all_coordinates.append([self.getcoordX(), self.getcoordY()])
         self._ability = None
 
     def set_ability(self):
@@ -32,28 +32,28 @@ class Goblin(Creature):
         cls.all_coordinates = []
 
     @classmethod
-    def load_goblins(cls,coordinates,abilities):
+    def load_goblins(cls, coordinates, abilities):
         for i in range(0, 5):
             goblin = Goblin()
         cls.all_coordinates = coordinates
         cls.abilities = abilities
-        for i in range(0,5):
-            for j in range(0,5):
-                cls.all_goblins[i].set_coords(coordinates[i][0],coordinates[i][1])
-        for i in range(0,5):
+        for i in range(0, 5):
+            for j in range(0, 5):
+                cls.all_goblins[i].set_coords(coordinates[i][0], coordinates[i][1])
+        for i in range(0, 5):
             cls.all_goblins[i].set_ability()
 
     def wealth_goblin(self):
         coins = 0
         r = random.random()
-        if r <= 0.7 - self.get_difficulty()/10:
+        if r <= 0.7 - self.get_difficulty() / 10:
             coins = 400 - 100 * self.get_difficulty()
         return coins
 
     def health_goblin(self):
         health = 0
         r = random.random()
-        if r <= 0.7 - self.get_difficulty()/10:
+        if r <= 0.7 - self.get_difficulty() / 10:
             health = 70 - 10 * self.get_difficulty()
         return health
 
@@ -69,3 +69,6 @@ class Goblin(Creature):
             else:
                 type = "Gamer Goblin"
             print(type, goblins[i].getcoordX(), goblins[i].getcoordY())
+
+
+

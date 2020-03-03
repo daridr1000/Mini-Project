@@ -5,7 +5,7 @@ from character.creature.monster import Monster
 from character.creature.goblin import Goblin
 from character.creature import Creature
 from getch1 import *
-import sys,math
+import sys, pickle
 
 WALL_CHAR = "#"
 SPACE_CHAR = "-"
@@ -29,13 +29,43 @@ class _Environment:
     def get_environment(self):
         return self._environment
 
+    def get_monster(self):
+        monster = Monster()
+        while self.get_coord(monster.getcoordX(), monster.getcoordY()) != 0:
+            Monster.hero_fight.remove(Monster.hero_fight[Monster.all_monsters.index(monster)])
+            Monster.all_monsters.remove(monster)
+            Monster.all_coordinates.remove([monster.getcoordX(), monster.getcoordY()])
+            monster = Monster()
+        monster.set_ability()
+        return [monster.getcoordX(), monster.getcoordY()]
+
+    def get_goblin(self):
+        goblin = Goblin()
+        while self.get_coord(goblin.getcoordX(), goblin.getcoordY()) != 0:
+            Goblin.all_goblins.remove(goblin)
+            Goblin.all_coordinates.remove([goblin.getcoordX(), goblin.getcoordY()])
+            goblin = Goblin()
+        goblin.set_ability()
+        return [goblin.getcoordX(), goblin.getcoordY()]
+
+    def set_creatures(self):
+        for i in range(0, 5):
+            monster = self.get_monster()
+            XM = monster[0]
+            YM = monster[1]
+            self.set_coord(XM, YM, 3)
+            goblin = self.get_goblin()
+            XG = goblin[0]
+            YG = goblin[1]
+            self.set_coord(XG, YG, 4)
+
     def print_environment(self):
         """print out the environment in the terminal"""
         for row in self._environment:
             row_str = str(row)
             row_str = row_str.replace("1", WALL_CHAR)  # replace the wall character
             row_str = row_str.replace("0", SPACE_CHAR)  # replace the space character
-            row_str = row_str.replace("2", HERO_CHAR )  # replace the hero character
+            row_str = row_str.replace("2", HERO_CHAR)  # replace the hero character
             row_str = row_str.replace("3", MONSTER_CHAR)  # replace the monster character
             row_str = row_str.replace("4", GOBLIN_CHAR)  # replace the goblin character
             print("".join(row_str))
@@ -52,7 +82,8 @@ class Game:
         self.myHero = Hero()
         self.maze = make_maze_recursion(17, 17)
         self.MyEnvironment = _Environment(self.maze)  # initial environment is the maze itself
-        self._count = 0
+
+    """ ASK IF HERO MUST BE GENERATED RANDOMLY"""
 
     def _get_hero(self):
         environment = self.MyEnvironment.get_environment()
@@ -60,26 +91,84 @@ class Game:
             self.myHero = Hero()
         return [self.myHero.getcoordX(), self.myHero.getcoordY()]
 
-    def _get_monster(self):
-        environment = self.MyEnvironment.get_environment()
-        monster = Monster()
-        while environment[monster.getcoordX()][monster.getcoordY()] != 0:
-            Monster.hero_fight.remove(Monster.hero_fight[Monster.all_monsters.index(monster)])
-            Monster.all_monsters.remove(monster)
-            Monster.all_coordinates.remove([monster.getcoordX(), monster.getcoordY()])
-            monster = Monster()
-        monster.set_ability()
-        return [monster.getcoordX(), monster.getcoordY()]
+    def _set_hero(self, environment):
+        XH = self._get_hero()[0]
+        YH = self._get_hero()[1]
+        environment[XH][YH] = 2
 
-    def _get_goblin(self):
-        environment = self.MyEnvironment.get_environment()
-        goblin = Goblin()
-        while environment[goblin.getcoordX()][goblin.getcoordY()] != 0:
-            Goblin.all_goblins.remove(goblin)
-            Goblin.all_coordinates.remove([goblin.getcoordX(), goblin.getcoordY()])
-            goblin = Goblin()
-        goblin.set_ability()
-        return [goblin.getcoordX(), goblin.getcoordY()]
+    def reset(self):
+        self.myHero.reset_hero_abilities()
+        Monster.reset_monsters()
+        Goblin.reset_goblins()
+        self.MyEnvironment = _Environment(self.maze)
+
+    def _load_abilities(self):
+        f = open("backup", "rb")
+        self._count = pickle.load(f)
+        health = pickle.load(f)
+        coins = pickle.load(f)
+        monsters_visited = pickle.load(f)
+        coord_X = pickle.load(f)
+        coord_Y = pickle.load(f)
+        self.myHero.load_hero_abilities(health,coins,monsters_visited,coord_X,coord_Y)
+        Monster.all_monsters = pickle.load(f)
+        Monster.all_coordinates = pickle.load(f)
+        Monster.hero_fight = pickle.load(f)
+        Goblin.all_goblins = pickle.load(f)
+        Goblin.all_coordinates = pickle.load(f)
+        maze = pickle.load(f)
+        self.MyEnvironment = _Environment(maze)
+        difficulty = pickle.load(f)
+        Creature.set_difficulty(difficulty)
+        Monster.abilities = pickle.load(f)
+        Goblin.abilities = pickle.load(f)
+        f.close()
+        """ self._count = int(lines[0].rstrip('\n'))
+         self.myHero.load_hero_abilities(int(lines[1].rstrip('\n')), int(lines[2].rstrip('\n')),
+                                         int(lines[3].rstrip('\n')),int(lines[9].rstrip('\n')),int(lines[10].rstrip('\n')))
+         for i in list(range(4, 8)) + [11,13]:
+             lines[i] = lines[i].rstrip('\n')
+             lines[i] = lines[i].strip('][').split(', ')
+         coord_m = []
+         coord_g = []
+         for i in range(0,10,2):
+             coord_m.append(lines[4][i:(i+2)])
+             coord_g.append(lines[6][i:(i+2)])
+         for i in range(0,4):
+             coord_m[i][1] = coord_m[i][1].replace(']','')
+             coord_g[i][1] = coord_g[i][1].replace(']','')
+         for i in range(1, 5):
+             coord_m[i][0] = coord_m[i][0].replace('[','')
+             coord_g[i][0] = coord_g[i][0].replace('[','')
+         for i in range(0,5):
+             for j in range(0,2):
+                 coord_m[i][j] = int(coord_m[i][j])
+                 coord_g[i][j] = int(coord_g[i][j])
+         for i in range(0,len(lines[5])):
+             lines[5][i] = int(lines[5][i])
+         for i in range(0,len(lines[11])):
+             lines[11][i] = int(lines[11][i])
+         for i in range(0,len(lines[12])):
+             lines[12][i] = int(lines[12][i])
+         Monster.load_monsters(coord_m, lines[5],lines[11])
+         Goblin.load_goblins(coord_g,lines[12])
+         maze = []
+         for i in range(0,len(lines[7]),int(math.sqrt(len(lines[7])))):
+             maze.append(lines[7][i:(i+int(math.sqrt(len(lines[7]))))])
+         for i in range(0,len(maze)):
+             maze[i][16] = maze[i][0] = 1
+         for i in range(0,len(maze)):
+             for j in range(0,len(maze)):
+                 maze[i][j] = int(maze[i][j])
+         self.MyEnvironment = _Environment(maze)
+         Creature.set_difficulty(int(lines[8].rstrip('\n')))
+                 """
+
+    def load(self):
+        f = open("load_game.txt", "r")
+        fl = f.readlines()
+        self._load_abilities()
+        f.close()
 
     @staticmethod
     def menu():
@@ -92,53 +181,6 @@ class Game:
         print("press up key, right key, left key or down key for moving in the maze")
         print("press E for exiting the game")
         print("press S for saving the game ")
-
-    def _load_abilities(self, lines):
-        self._count = int(lines[0].rstrip('\n'))
-        self.myHero.load_hero_abilities(int(lines[1].rstrip('\n')), int(lines[2].rstrip('\n')),
-                                        int(lines[3].rstrip('\n')),int(lines[9].rstrip('\n')),int(lines[10].rstrip('\n')))
-        for i in list(range(4, 8)) + [11,13]:
-            lines[i] = lines[i].rstrip('\n')
-            lines[i]=lines[i].strip('][').split(', ')
-        coord_m = []
-        coord_g = []
-        for i in range(0,10,2):
-            coord_m.append(lines[4][i:(i+2)])
-            coord_g.append(lines[6][i:(i+2)])
-        for i in range(0,4):
-            coord_m[i][1] = coord_m[i][1].replace(']','')
-            coord_g[i][1] = coord_g[i][1].replace(']','')
-        for i in range(1, 5):
-            coord_m[i][0] = coord_m[i][0].replace('[','')
-            coord_g[i][0] = coord_g[i][0].replace('[','')
-        for i in range(0,5):
-            for j in range(0,2):
-                coord_m[i][j] = int(coord_m[i][j])
-                coord_g[i][j] = int(coord_g[i][j])
-        for i in range(0,len(lines[5])):
-            lines[5][i] = int(lines[5][i])
-        for i in range(0,len(lines[11])):
-            lines[11][i] = int(lines[11][i])
-        for i in range(0,len(lines[12])):
-            lines[12][i] = int(lines[12][i])
-        Monster.load_monsters(coord_m, lines[5],lines[11])
-        Goblin.load_goblins(coord_g,lines[12])
-        maze = []
-        for i in range(0,len(lines[7]),int(math.sqrt(len(lines[7])))):
-            maze.append(lines[7][i:(i+int(math.sqrt(len(lines[7]))))])
-        for i in range(0,len(maze)):
-            maze[i][16] = maze[i][0] = 1
-        for i in range(0,len(maze)):
-            for j in range(0,len(maze)):
-                maze[i][j] = int(maze[i][j])
-        self.MyEnvironment = _Environment(maze)
-        Creature.set_difficulty(int(lines[8].rstrip('\n')))
-
-    def load(self):
-        f = open("load_game.txt", "r")
-        fl = f.readlines()
-        self._load_abilities(fl)
-        f.close()
 
     @staticmethod
     def league_table(file):
@@ -187,34 +229,11 @@ class Game:
         f.write(cls._users[-1] + '\n' + str(cls._coins[-1]) + '\n')
         f.close()
 
-    def _set_hero(self, environment):
-        XH = self._get_hero()[0]
-        YH = self._get_hero()[1]
-        environment[XH][YH] = 2
-
-    def _set_creatures(self, environment):
-        for i in range(0, 5):
-            monster = self._get_monster()
-            XM = monster[0]
-            YM = monster[1]
-            environment[XM][YM] = 3
-            goblin = self._get_goblin()
-            XG = goblin[0]
-            YG = goblin[1]
-            environment[XG][YG] = 4
-
     @staticmethod
     def choose_option():
         print("Choose an option ! ")
         ch = getch()
         return ch
-
-    def reset(self):
-        self._count = 0
-        self.myHero.reset_hero_abilities()
-        Monster.reset_monsters()
-        Goblin.reset_goblins()
-        self.MyEnvironment = _Environment(self.maze)
 
     @staticmethod
     def choose_difficulty():
@@ -252,7 +271,7 @@ class Game:
             print("============================")
             environment = self.MyEnvironment.get_environment()
             self._set_hero(environment)
-            self._set_creatures(environment)
+            self.MyEnvironment.set_creatures()
         if ord(option) == 76:
             self.load()
             print("Game loaded!")
@@ -265,14 +284,13 @@ class Game:
                 # if self.myHero.move_debug(environment):  #this works in debug mode
                 print("============================")
                 self.MyEnvironment.print_environment()
-                self._count += 1
-                self.myHero.increase_gem()
-                print("============================", self._count)
+                self.myHero.increase_moves()
+                print("============================", self.myHero.get_moves())
                 XH = self.myHero.getcoordX()
                 YH = self.myHero.getcoordY()
                 print("Hero new position: ", XH, YH)
-                print("Monsters abilities: ",Monster.abilities)
-                print("Goblins abilities: ",Goblin.abilities)
+                print("Monsters abilities: ", Monster.abilities)
+                print("Goblins abilities: ", Goblin.abilities)
                 if self.myHero.gethealth() > 0:
                     print("Health", self.myHero.gethealth())
                 else:
@@ -301,12 +319,14 @@ class Game:
                     Goblin.goblins_details()
                 elif ch == b'H':
                     Game.instructions()
-
+                elif ch == b'E':
+                    sys.exit()
+                elif ch == b'S':
+                    self.myHero.save_game(self.MyEnvironment.get_environment())
 
 
 
 if __name__ == "__main__":
-
     myGame = Game()
     while True:
         myGame.play()

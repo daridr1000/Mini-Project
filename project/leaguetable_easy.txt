@@ -6,3 +6,5 @@ natasha
 900
 duncan
 900
+sharon
+850

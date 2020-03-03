@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a21582ad-eb8f-4566-ab4e-cd2922c4b791" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project/leaguetable_easy.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/leaguetable_hard.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/leaguetable_medium.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/leaguetable_very_hard.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/load_game.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/backup" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/character/backup" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/creature/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/creature/goblin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/goblin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/creature/monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/monster.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/hero.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/hero.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/leaguetable.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/leaguetable_easy.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_easy.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/playgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/playgame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,13 +40,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\oop_assesment\project\character\creature" />
       <recent name="D:\oop_assesment\project\character" />
+      <recent name="D:\oop_assesment\project" />
+      <recent name="D:\oop_assesment\project\character\creature" />
       <recent name="D:\oop_assesment\maze_newfiles" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.maze_gen_recursive">
-    <configuration name="hero" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.playgame (2)">
+    <configuration name="goblin" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="oop_assesment" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -59,11 +55,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/maze_newfiles" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project/character/creature" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/maze_newfiles/hero.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project/character/creature/goblin.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.maze_gen_recursive" />
         <item itemvalue="Python.playgame (2)" />
+        <item itemvalue="Python.goblin" />
+        <item itemvalue="Python.maze_gen_recursive" />
         <item itemvalue="Python.monster" />
         <item itemvalue="Python.playgame (1)" />
-        <item itemvalue="Python.hero" />
       </list>
     </recent_temporary>
   </component>
@@ -231,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582739972934</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="almost finished, still have to add comments and organize code (methods, classes,objects)">
+      <created>1583247387056</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1583247387056</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -241,37 +244,42 @@
     <MESSAGE value="monsters and goblins IMPROVED!" />
     <MESSAGE value="gameplay finish! added menu and started user and leaderboard" />
     <MESSAGE value="added league table" />
-    <option name="LAST_COMMIT_MESSAGE" value="added league table" />
+    <MESSAGE value="almost finished, still have to add comments and organize code (methods, classes,objects)" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost finished, still have to add comments and organize code (methods, classes,objects)" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="372" y="145" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583007701329">
+    <state x="372" y="145" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583259711563">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="372" y="145" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1583007701329" />
-    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1582739972117">
+    <state x="372" y="145" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1583259711563" />
+    <state x="371" y="89" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583260365861">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1582739972117" />
+    <state x="371" y="89" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1583260365861" />
+    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1583247386180">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1583247386180" />
     <state x="421" y="97" key="FileChooserDialogImpl" timestamp="1582209938523">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="97" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582209938523" />
-    <state width="1259" height="285" key="GridCell.Tab.0.bottom" timestamp="1583031916402">
+    <state width="1259" height="354" key="GridCell.Tab.0.bottom" timestamp="1583262632790">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="285" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583031916402" />
-    <state width="1259" height="285" key="GridCell.Tab.0.center" timestamp="1583031916402">
+    <state width="1259" height="354" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
+    <state width="1259" height="354" key="GridCell.Tab.0.center" timestamp="1583262632790">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="285" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583031916402" />
-    <state width="1259" height="285" key="GridCell.Tab.0.left" timestamp="1583031916402">
+    <state width="1259" height="354" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
+    <state width="1259" height="354" key="GridCell.Tab.0.left" timestamp="1583262632790">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="285" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583031916402" />
-    <state width="1259" height="285" key="GridCell.Tab.0.right" timestamp="1583031916402">
+    <state width="1259" height="354" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
+    <state width="1259" height="354" key="GridCell.Tab.0.right" timestamp="1583262632790">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="285" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583031916402" />
+    <state width="1259" height="354" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
     <state width="1259" height="498" key="GridCell.Tab.1.bottom" timestamp="1582233547179">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -292,9 +300,24 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="337" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1583006875458" />
+    <state x="0" y="0" width="742" height="680" key="find.popup" timestamp="1583252599952">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" width="742" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1583252599952" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1582385854888">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1582385854888" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/project/character/hero.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
