@@ -1,2 +1,12 @@
+PAUL
+1400
+GUI
+1250
 SHAron
 1000
+JOHN
+1000
+darius
+850
+eleanor
+800

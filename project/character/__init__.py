@@ -12,6 +12,6 @@ class Character:
     def getcoordY(self):
         return self._coordY
 
-    def set_coords(self,x,y):
+    def set_coords(self, x, y):
         self._coordX = x
         self._coordY = y

@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a21582ad-eb8f-4566-ab4e-cd2922c4b791" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project/backup" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/character/backup" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/backup" beforeDir="false" afterPath="$PROJECT_DIR$/project/backup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/character/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/creature/goblin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/goblin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/creature/monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/monster.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/hero.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/hero.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/leaguetable_easy.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_easy.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/leaguetable_hard.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_hard.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/leaguetable_medium.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_medium.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/leaguetable_very_hard.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_very_hard.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/load_game.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/maze_gen_recursive.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/maze_gen_recursive.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/playgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/playgame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -234,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583247387056</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="almost finished, still have to add comments and organize code (methods, classes,objects)">
+      <created>1583262647049</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1583262647049</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -256,10 +268,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="89" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1583260365861" />
-    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1583247386180">
+    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1583262645713">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1583247386180" />
+    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1583262645713" />
     <state x="421" y="97" key="FileChooserDialogImpl" timestamp="1582209938523">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

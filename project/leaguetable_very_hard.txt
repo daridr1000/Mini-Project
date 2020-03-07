@@ -2,5 +2,21 @@ DARIUS
 1350
 erik
 1350
+John Smith
+1250
+peter
+1150
+OLA
+1150
+marius
+1000
+victor
+900
+laura
+900
+lucile
+800
+callum
+800
 erik
 400

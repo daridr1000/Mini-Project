@@ -35,8 +35,6 @@ class Monster(Creature):
 
     @classmethod
     def load_monsters(cls, coordinates, hero_fight, abilities):
-        for i in range(0, 5):
-            monster = Monster()
         cls.all_coordinates = coordinates
         cls.hero_fight = hero_fight
         for i in range(0,5):

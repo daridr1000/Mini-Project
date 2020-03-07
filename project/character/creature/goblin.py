@@ -33,8 +33,6 @@ class Goblin(Creature):
 
     @classmethod
     def load_goblins(cls, coordinates, abilities):
-        for i in range(0, 5):
-            goblin = Goblin()
         cls.all_coordinates = coordinates
         cls.abilities = abilities
         for i in range(0, 5):

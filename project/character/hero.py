@@ -15,12 +15,14 @@ class Hero(Character):
     """this is the hero class, further define it please"""
 
     def __init__(self):
-        """set the coordinate of the hero in the maze"""
         super().__init__()
         self._health = 100
-        self._coins = 1000  # gold coins the hero have.
+        self._coins = 1000
         self._moves = 0
         self._visited_monsters = 0
+
+    def set_moves(self,moves):
+        self._moves = moves
 
     def increase_moves(self):
         self._moves += 1
@@ -45,11 +47,11 @@ class Hero(Character):
         self._coins = 1000
         self._visited_monsters = 0
 
-    def load_hero_abilities(self, health, coins, visited_monsters,x,y):
+    def load_hero_abilities(self, health, coins, visited_monsters, x, y):
         self._health = health
         self._coins = coins
         self._visited_monsters = visited_monsters
-        self.set_coords(x,y)
+        self.set_coords(x, y)
 
     def win_game(self):
         if self._visited_monsters == 5:
@@ -63,32 +65,22 @@ class Hero(Character):
 
     def save_game(self, environment):
         f = open("backup", "wb")
-        pickle.dump(self._moves,f)
-        pickle.dump(self.gethealth(),f)
-        pickle.dump(self.getcoins(),f)
-        pickle.dump(self._visited_monsters,f)
+        pickle.dump(self._moves, f)
+        pickle.dump(self.gethealth(), f)
+        pickle.dump(self.getcoins(), f)
+        pickle.dump(self._visited_monsters, f)
         pickle.dump(self.getcoordX(), f)
         pickle.dump(self.getcoordY(), f)
-        pickle.dump(Monster.all_monsters,f)
-        pickle.dump(Monster.all_coordinates,f)
-        pickle.dump(Monster.hero_fight,f)
-        pickle.dump(Goblin.all_goblins,f)
-        pickle.dump(Goblin.all_coordinates,f)
-        pickle.dump(environment,f)
-        pickle.dump(Creature.get_difficulty(),f)
-        pickle.dump(Monster.abilities,f)
-        pickle.dump(Goblin.abilities,f)
+        pickle.dump(Monster.all_monsters, f)
+        pickle.dump(Monster.all_coordinates, f)
+        pickle.dump(Monster.hero_fight, f)
+        pickle.dump(Goblin.all_goblins, f)
+        pickle.dump(Goblin.all_coordinates, f)
+        pickle.dump(environment, f)
+        pickle.dump(Creature.get_difficulty(), f)
+        pickle.dump(Monster.abilities, f)
+        pickle.dump(Goblin.abilities, f)
         f.close()
-
-        """save = str(self._gem) + '\n' + str(self.gethealth()) + '\n' + str(self.getcoins()) + \
-               '\n'+ str(self._visited_monsters) +  \
-               '\n' + str(Monster.all_coordinates) + '\n' + str(Monster.hero_fight) + \
-               '\n' + str(Goblin.all_coordinates) + '\n' + str(environment) + \
-               '\n' + str(Creature.get_difficulty()) + \
-                '\n' + str(self.getcoordX()) + '\n' + str(self.getcoordY()) + \
-                '\n' +str(Monster.abilities) + '\n' + str(Goblin.abilities)
-        f.write(save)
-        f.close()"""
 
     def move(self, environment):
         """move in the maze, it is noted this function may not work in the debug mode"""
@@ -98,7 +90,6 @@ class Hero(Character):
         if ch2 == b'H' or ch2 == "A":
             # the up arrow key was pressed
             print("up key pressed")
-
             if environment[self._coordX - 1][self._coordY] == 0:
                 environment[self._coordX - 1][self._coordY] = 2
                 if environment[self._coordX][self._coordY] != 3:
@@ -306,14 +297,17 @@ class Hero(Character):
     @staticmethod
     def rock_paper_scissors():
         ch = input("Choose rock(R), paper(P) or scissor(S) : ")
-        while ch!='R' and ch!='P' and ch != 'S':
+        while ch != 'R' and ch != 'P' and ch != 'S':
             print("Wrong input!")
             ch = input("Choose rock(R), paper(P) or scissor(S) : ")
         creature_choice = Creature.gamer()
-        choices = ["P", "R", "S", ""]
+        choices = ["P", "R", "S"]
         print("Creature picked:", choices[creature_choice])
         while choices.index(ch) == creature_choice:
             ch = input("Draw! Choose again! ")
+            while ch != 'R' and ch != 'P' and ch != 'S':
+                print("Wrong input!")
+                ch = input("Choose rock(R), paper(P) or scissor(S) : ")
             creature_choice = Creature.gamer()
             print("Creature picked:", choices[creature_choice])
         if choices.index(ch) - creature_choice == -1 or choices.index(ch) - creature_choice == 2:
@@ -326,7 +320,6 @@ class Hero(Character):
         if Monster.hero_fight[Monster.all_monsters.index(monster)] == 0:
             self._visited_monsters += 1
             Monster.hero_fight[Monster.all_monsters.index(monster)] = 1
-
         if monster.get_ability() == 1:
             coins_stolen = monster.thief_monster()
             print("The hero meets a thief monster with the ability of ({}, {}%) at coordinate ({},{}). "
@@ -366,7 +359,7 @@ class Hero(Character):
                       "won the fight, no health points were lost".format(
                     monster.getcoordX(), monster.getcoordY()))
             else:
-                print("The hero fought with the thief monster at coordinate ({},{}) and "
+                print("The hero fought with the fighter monster at coordinate ({},{}) and "
                       "lost the fight, {} health points were lost".format(
                     monster.getcoordX(), monster.getcoordY(), health_taken))
             self._health -= health_taken

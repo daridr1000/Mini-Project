@@ -20,6 +20,7 @@ TILE_CRATE = 1
 MAZE_HEIGHT = 51
 MAZE_WIDTH = 51
 
+
 def create_empty_grid(width, height, default_value=TILE_EMPTY):
     """ Create an empty grid. """
     grid = []
