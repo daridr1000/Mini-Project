@@ -11,7 +11,9 @@ class Monster(Creature):
     all_monsters = []
     all_coordinates = []
     hero_fight = []
+    # Initialises the abilities of the monsters
     abilities = [1, 2, 3, random.randrange(1, 4), random.randrange(1, 4)]
+    # Randomly chooses the abilities of each monster
     random.shuffle(abilities)
 
     def __init__(self):
@@ -27,13 +29,13 @@ class Monster(Creature):
     def get_ability(self):
         return self._ability
 
-    @classmethod
+    @classmethod # resets all the monster class variables
     def reset_monsters(cls):
         cls.all_monsters = []
         cls.all_coordinates = []
         cls.hero_fight = []
 
-    @classmethod
+    @classmethod # loads all the class variables that have been saved using pickle
     def load_monsters(cls, coordinates, hero_fight, abilities):
         cls.all_coordinates = coordinates
         cls.hero_fight = hero_fight
@@ -44,10 +46,11 @@ class Monster(Creature):
         for i in range(0,5):
             cls.all_monsters[i].set_ability()
 
+    # Initialises the thief_monster
     def thief_monster(self):
         coins = 0
-        r = random.random()
-        if r <= 0.3 + self.get_difficulty() / 10:
+        r = random.random() # the probability is determined by using a random number between 0 and 1
+        if r <= 0.3 + self.get_difficulty() / 10:  # determining the result considering the difficulty of the game
             coins = 50 + 50 * self.get_difficulty()
         return coins
 
@@ -58,7 +61,7 @@ class Monster(Creature):
             health = 10 + 10 * self.get_difficulty()
         return health
 
-    @staticmethod
+    @staticmethod  # prints the details of all monsters
     def monsters_details():
         print("MONSTERS:")
         monsters = Monster.all_monsters

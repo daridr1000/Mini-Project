@@ -1,5 +1,9 @@
+Andrew
+1750
 PAUL
 1400
+elena
+1350
 GUI
 1250
 SHAron
@@ -9,4 +13,8 @@ JOHN
 darius
 850
 eleanor
+800
+Xenia
+800
+Quentin
 800

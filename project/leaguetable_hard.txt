@@ -1,3 +1,7 @@
+TUDOR
+1500
+Phoebe Jenkins
+1050
 federico
 1000
 alejandro
@@ -6,5 +10,11 @@ eric
 850
 player 1
 850
+Zara
+850
+Julius
+700
+Sniff
+700
 DARI
 300

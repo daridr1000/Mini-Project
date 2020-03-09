@@ -5,16 +5,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/backup" beforeDir="false" afterPath="$PROJECT_DIR$/project/backup" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/character/creature/goblin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/goblin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/character/creature/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/creature/monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/creature/monster.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/character/hero.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/character/hero.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/leaguetable_easy.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_easy.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/leaguetable_hard.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_hard.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/leaguetable_medium.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_medium.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/leaguetable_very_hard.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/leaguetable_very_hard.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/load_game.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/maze_gen_recursive.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/maze_gen_recursive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/playgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/playgame.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +27,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XwKPwzLmly6j1lK2dgIFjgg1IN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -247,10 +244,25 @@
       <option name="project" value="LOCAL" />
       <updated>1583262647049</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="report and uml done!!">
+      <created>1583616325197</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1583616325197</updated>
+    </task>
+    <task id="LOCAL-00010" summary="report and uml done!!">
+      <created>1583616420858</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1583616420858</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="new" />
     <MESSAGE value="new packages" />
     <MESSAGE value="monsters and goblins" />
@@ -258,7 +270,8 @@
     <MESSAGE value="gameplay finish! added menu and started user and leaderboard" />
     <MESSAGE value="added league table" />
     <MESSAGE value="almost finished, still have to add comments and organize code (methods, classes,objects)" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost finished, still have to add comments and organize code (methods, classes,objects)" />
+    <MESSAGE value="report and uml done!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="report and uml done!!" />
   </component>
   <component name="WindowStateProjectService">
     <state x="372" y="145" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583259711563">
@@ -269,30 +282,30 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="89" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1583260365861" />
-    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1583616324293">
+    <state x="297" y="0" key="CommitChangelistDialog2" timestamp="1583616420013">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1583616324293" />
+    <state x="297" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1583616420013" />
     <state x="421" y="97" key="FileChooserDialogImpl" timestamp="1582209938523">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="97" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1582209938523" />
-    <state width="1259" height="354" key="GridCell.Tab.0.bottom" timestamp="1583262632790">
+    <state width="1259" height="354" key="GridCell.Tab.0.bottom" timestamp="1583700331989">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="354" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
-    <state width="1259" height="354" key="GridCell.Tab.0.center" timestamp="1583262632790">
+    <state width="1259" height="354" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1583700331989" />
+    <state width="1259" height="354" key="GridCell.Tab.0.center" timestamp="1583700331988">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="354" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
-    <state width="1259" height="354" key="GridCell.Tab.0.left" timestamp="1583262632790">
+    <state width="1259" height="354" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1583700331988" />
+    <state width="1259" height="354" key="GridCell.Tab.0.left" timestamp="1583700331987">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="354" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
-    <state width="1259" height="354" key="GridCell.Tab.0.right" timestamp="1583262632790">
+    <state width="1259" height="354" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1583700331987" />
+    <state width="1259" height="354" key="GridCell.Tab.0.right" timestamp="1583700331988">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="354" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583262632790" />
+    <state width="1259" height="354" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1583700331988" />
     <state width="1259" height="498" key="GridCell.Tab.1.bottom" timestamp="1582233547179">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
